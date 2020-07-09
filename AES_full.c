@@ -29,34 +29,36 @@ int main()
 	s_box(sbox);
 	Invs_box(Invsbox);
 	uint8_t input[4][4],key[4][4];
-	printf("\n-----------------------WELCOME TO ADVANCED ENCRYPTION STANDARD :)---------------------\n\n");
+	printf("\t******************************************************************************************\n");
+	printf("\t*                          WELCOME TO ADVANCED ENCRYPTION STANDARD                       *\n");
+	printf("\t******************************************************************************************\n");
 	do{
-		printf("--------------------ENTER E OR e TO ENCRYPT AND D or d TO DECRYPT---------------------\n");
+		printf("\t------------------   ENTER E OR e TO ENCRYPT AND D or d TO DECRYPT  ------------------\n");
 		scanf("%c",&dec);
 		getchar();						//consuming newline char
 		if(dec=='E'||dec=='e')
 		{
-				printf("------------------Enter input of 128 bits----------------\n");
+				printf("\t----------------  Enter input of 128 bits  --------------\n");
 				get_input(input);				// taking input
-				printf("---------------Enter the key of 128 bits-----------------\n"); 
+				printf("\t--------------- Enter the key of 128 bits  --------------\n"); 
 				get_input(key); 				//taking input of key	
 				encryption(input,key,sbox);
 	    }       
 		else if(dec=='D'||dec=='d')
 		{
-				printf("------------------Enter input of 128 bits----------------\n");
+				printf("\t----------------  Enter input of 128 bits  --------------\n");
 				get_input(input);				// taking input
-				printf("---------------Enter the key of 128 bits-----------------\n"); 
+				printf("\t-------------  Enter the key of 128 bits   --------------\n"); 
 				get_input(key);					//taking input of key 	
 				decryption(input,key,sbox,Invsbox);	
 		}
 		else
-		printf("\n-------------------------PLEASE! ENTER THE CORRECT INPUT------------------\n");
-		printf("\n-------------------ENTER 0 TO CONITNUE-------------------\n");
+		printf("\n\t--------------  PLEASE! ENTER THE CORRECT INPUT  ---------------\n");
+		printf("\n\t-----------------   ENTER 0 TO CONITNUE   ----------------\n");
 		scanf("%d",&con);
 		getchar();     //consuming newline char	
 	}while(con==0);
-	printf("\n----------------THANK YOU FOR USING OUR SERVICE, HAVE A NICE DAY :)-------------------\n");
+	printf("\n\t********     THANK YOU FOR USING OUR SERVICE, HAVE A NICE DAY :)      *********\n");
 	return 0;
 }
 void encryption(uint8_t input[4][4],uint8_t key[4][4],uint8_t sbox[16][16])
@@ -73,7 +75,7 @@ void encryption(uint8_t input[4][4],uint8_t key[4][4],uint8_t sbox[16][16])
 	print(input);
 	for(k=1;k<10;k++)
 	{
-		printf("----------------------------------ROUND %d-------------------------------\n\n",k);
+		printf("\t----------------------------------ROUND %d-------------------------------\n\n",k);
 		for(i=0;i<4;i++)
 	   		sub_bytes(input[i],sbox);
 	   	printf("AFTER SUBSTITUTION :\t");
@@ -88,7 +90,7 @@ void encryption(uint8_t input[4][4],uint8_t key[4][4],uint8_t sbox[16][16])
 		printf("AFTER ADDING KEY :\t");
 		print(input);
 	}
-	printf("\n----------------------------------ROUND %d-------------------------------\n",k);
+	printf("\n\t----------------------------------ROUND %d-------------------------------\n",k);
 	for(i=0;i<4;i++)
  		sub_bytes(input[i],sbox);
  	printf("AFTER SUBSTITUTION :\t");
@@ -113,7 +115,7 @@ void decryption(uint8_t input[4][4],uint8_t key[4][4],uint8_t sbox[16][16],uint8
 	print(input);
 	for(k=9;k>0;k--)
 	{
-		printf("\n--------------------------------ROUND %d----------------------------------\n\n",(10-k));
+		printf("\n\t--------------------------------ROUND %d----------------------------------\n\n",(10-k));
 		Invshift_rows(input);
 		printf("AFTER SHIFTING ROWS :\t");
 		print(input);
@@ -131,7 +133,7 @@ void decryption(uint8_t input[4][4],uint8_t key[4][4],uint8_t sbox[16][16],uint8
 		printf("AFTER MIXING COLOUMNS :\t");
 		print(input);
 	}
-	printf("\n-------------------------ROUND 10----------------------\n\n");
+	printf("\n\t-------------------------ROUND 10----------------------\n\n");
 	Invshift_rows(input);
 	printf("AFTER SHIFTING ROWS :\t");
 	print(input);
@@ -232,14 +234,7 @@ void extension_of_key(uint8_t key[4][4],uint8_t extended_key[4][44],uint8_t sbox
 void Add_round_key(uint8_t inp[4][4],uint8_t key[4][44],int r)
 {
 	int i=0,j=0;
-//	printf("\nROUND KEY\t");
-//	for(i=0;i<4;i++)
-//	{
-//		for(j=0;j<4;j++)
-//		{
-//			printf("%02x ",key[j][(4*r)+i]);
-//		}
-//	}
+
 	printf("\n");
 	for(i=0;i<4;i++)
 	{
@@ -369,7 +364,7 @@ void print(uint8_t input[4][4])
 	{
 		for(j=0;j<4;j++)
 			printf(" %02x",input[j][i]);
-	//	printf("\n");
+
 	}
 	printf("\n");
 }
